@@ -12,7 +12,7 @@
 #define IO_USERNAME ""
 #define IO_KEY ""
 #define WIFI_SSID ""
-#define WIFI_PASS "."
+#define WIFI_PASS ""
 
 /* init Adafruit IO */
 AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
