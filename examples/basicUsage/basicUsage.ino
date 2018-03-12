@@ -18,8 +18,8 @@
 AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 
 /* setup the feed */
-AdafruitIO_Feed *status = io.feed("work-status");
-AdafruitIO_Feed *notifier = io.feed("name-plate-response");
+AdafruitIO_Feed *status = io.feed("status");
+AdafruitIO_Feed *notifier = io.feed("response");
 
 /* setup the pixel strip */
 Adafruit_NeoPixel strip =
