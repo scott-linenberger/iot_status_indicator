@@ -1,11 +1,11 @@
 #include <Adafruit_NeoPixel.h>
-#include "StatusIndicator.h"
 #include "AdafruitIO_WiFi.h"
+#include "StatusIndicator.h"
 
 /* pin constants */
 #define PIN_PIXELS 4
 #define NUM_PIXELS 8
-#define PIN_LED_BLUE 2
+#define PIN_ONBOARD_LED 2
 
 /* connection constants */
 /* --->>> SET THESE <<<--- */
@@ -33,7 +33,7 @@ void setup() {
   Serial.begin(9600);
 
   /* setup the blue LED */
-  pinMode(PIN_LED_BLUE, OUTPUT);
+  pinMode(PIN_ONBOARD_LED, OUTPUT);
 
   while (!Serial) {
   }
@@ -65,7 +65,7 @@ void connectToIO() {
   while (io.status() < AIO_CONNECTED) {
     Serial.print(".");
     isOn = !isOn;
-    digitalWrite(PIN_LED_BLUE, isOn);
+    digitalWrite(PIN_ONBOARD_LED, isOn);
     delay(500);
   }
 
@@ -74,7 +74,7 @@ void connectToIO() {
   Serial.println(io.statusText());
 
   /* keep the blue LED on */
-  digitalWrite(PIN_LED_BLUE, LOW);
+  digitalWrite(PIN_ONBOARD_LED, HIGH);
 }
 
 void handleMessage(AdafruitIO_Data *data) {
@@ -83,7 +83,50 @@ void handleMessage(AdafruitIO_Data *data) {
   int intValue = value.toInt();
 
   /* update the desk status */
-  String responseMsg = statusIndicator.updateState(intValue);
+  String responseMsg = "Current Status: ";
+
+  /* update the status indicator */
+  statusIndicator.updateState(intValue);
+
+  /* set the response message */
+  switch (intValue) {
+    case STATE_GREEN:
+      responseMsg = responseMsg + "Available";
+      break;
+
+    case STATE_YELLOW:
+      responseMsg = responseMsg + "In a Meeting";
+      break;
+
+    case STATE_BLUE:
+      responseMsg = responseMsg + "Offline";
+      break;
+
+    case STATE_PURPLE:
+      responseMsg = responseMsg + "Remote";
+      break;
+
+    case STATE_RED:
+      responseMsg = responseMsg + "Busy";
+      break;
+
+    case STATE_GREEN_PULSING:
+      responseMsg = responseMsg + "Commuting";
+      break;
+
+    case STATE_RED_PULSING:
+      responseMsg = responseMsg + "Do not Disturb";
+      break;
+
+    case STATE_PARTY_TIME:
+      responseMsg = responseMsg + "Party Time!";
+      break;
+
+    default:
+      /* not sure what the state is */
+      responseMsg = responseMsg + "Unknown";
+      break;
+  }
 
   /* write the response to the notifier feed so we know the update happened */
   notifier->save(responseMsg);
