@@ -18,38 +18,38 @@ void StatusIndicator::run() {
   String stateString = "Current status is: ";
 
   switch (state) {
-    case STATE_AVAILABLE:
+    case STATE_GREEN:
       displayColor(neoPixels->Color(0, 255, 20));
-      currentStatus = stateString + "Available";
+      currentStatus = stateString + "Green";
       break;
 
-    case STATE_MEETING:
+    case STATE_YELLOW:
       displayColor(neoPixels->Color(200, 200, 0));
-      currentStatus = stateString + "In a meeting";
+      currentStatus = stateString + "Yellow";
       break;
 
-    case STATE_OFFLINE:
+    case STATE_BLUE:
       displayColor(neoPixels->Color(50, 50, 255));
-      currentStatus = stateString + "Offline";
+      currentStatus = stateString + "Blue";
       break;
 
-    case STATE_REMOTE:
+    case STATE_PURPLE:
       displayColor(neoPixels->Color(255, 0, 255));
-      currentStatus = stateString + "Working remote";
+      currentStatus = stateString + "Purple";
       break;
 
-    case STATE_DO_NOT_DISTURB:
+    case STATE_RED:
       displayColor(neoPixels->Color(255, 10, 10));
-      currentStatus = stateString + "Do not disturb";
+      currentStatus = stateString + "Red";
       break;
 
-    case STATE_COMMUTING:
-      currentStatus = stateString + "Commuting";
+    case STATE_GREEN_PULSING:
+      currentStatus = stateString + "Green Pulsing";
       fader.fade(neoPixels, false, true, false);
       break;
 
-    case STATE_ON_A_CALL:
-      currentStatus = stateString + "On a call";
+    case STATE_RED_PULSING:
+      currentStatus = stateString + "Red Pulsing";
       fader.fade(neoPixels, true, false, false);
       break;
 
@@ -75,7 +75,7 @@ void StatusIndicator::displayColor(uint32_t color) {
   neoPixels->show();
 }
 
-String StatusIndicator::updateState(int _state) {
+void StatusIndicator::updateState(int _state) {
   /* assign the state value */
   state = _state;
 
