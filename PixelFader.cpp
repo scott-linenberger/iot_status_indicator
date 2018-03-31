@@ -14,7 +14,7 @@ void PixelFader::fade(Adafruit_NeoPixel* neoPixels, boolean isRed,
   tickFadeValue();
 
   /* update the pixels */
-  for (uint8_t i = 0; i < neoPixels->numPixels(); i++) {
+  for (uint8_t i = 0; i < neoPixels->numPixels() - 1; i++) {
     uint8_t valueRed = isRed ? fadeValue : 0;
     uint8_t valueGreen = isGreen ? fadeValue : 0;
     uint8_t valueBlue = isBlue ? fadeValue : 0;

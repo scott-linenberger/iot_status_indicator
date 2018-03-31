@@ -56,7 +56,7 @@ void StatusIndicator::run() {
 }
 
 void StatusIndicator::displayColor(uint32_t color) {
-  for (uint8_t i = 0; i < neoPixels->numPixels(); i++) {
+  for (uint8_t i = 0; i < neoPixels->numPixels() - 1; i++) {
     neoPixels->setPixelColor(i, color);
   }
 
