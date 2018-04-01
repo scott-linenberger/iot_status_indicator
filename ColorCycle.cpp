@@ -13,7 +13,7 @@ void ColorCycle::start(Adafruit_NeoPixel * neoPixels) {
   tickValues(neoPixels);
 
   /* get the current color */
-  uint32_t currentColor = colorWheel(wheelValue, neoPixels);
+  uint32_t currentColor = Color::wheel(wheelValue, neoPixels);
 
   /* update the pixels */
   for (uint8_t i = 0; i < neoPixels->numPixels(); i++) {
@@ -32,17 +32,4 @@ void ColorCycle::tickValues(Adafruit_NeoPixel * neoPixels) {
 
   /* reset the value if needed */
   wheelValue > 255 ? 0 : wheelValue;
-}
-
-uint32_t ColorCycle::colorWheel(byte wheelPosition, Adafruit_NeoPixel * neoPixels) {
-  wheelPosition = 255 - wheelPosition;
-  if (wheelPosition < 85) {
-    return neoPixels->Color(255 - wheelPosition * 3, 0, wheelPosition * 3);
-  }
-  if (wheelPosition < 170) {
-    wheelPosition -= 85;
-    return neoPixels->Color(0, wheelPosition * 3, 255 - wheelPosition * 3);
-  }
-  wheelPosition -= 170;
-  return neoPixels->Color(wheelPosition * 3, 255 - wheelPosition * 3, 0);
 }

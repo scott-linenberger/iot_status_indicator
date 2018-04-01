@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <Adafruit_NeoPixel.h>
+#include "Color.h"
 
 class ColorCycle {
   /* party vars */
@@ -22,8 +23,7 @@ class ColorCycle {
   void start(Adafruit_NeoPixel * neoPixels);
 
  private:
- void tickValues(Adafruit_NeoPixel * neoPixels);
-  uint32_t colorWheel(byte wheelPosition, Adafruit_NeoPixel * neoPixels);
+  void tickValues(Adafruit_NeoPixel * neoPixels);
 };
 
 #endif

@@ -13,7 +13,7 @@ void PixelParty::party(Adafruit_NeoPixel * neoPixels) {
   tickValues(neoPixels);
 
   /* get the current color */
-  uint32_t currentColor = Color.wheel(wheelValue, neoPixels);
+  uint32_t currentColor = Color::wheel(wheelValue, neoPixels);
 
   /* update the pixel */
   neoPixels->setPixelColor(pixelPosition, currentColor);
