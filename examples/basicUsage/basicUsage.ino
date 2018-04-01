@@ -74,7 +74,7 @@ void connectToIO() {
   Serial.println(io.statusText());
 
   /* keep the blue LED on */
-  digitalWrite(PIN_ONBOARD_LED, HIGH);
+  digitalWrite(PIN_ONBOARD_LED, LOW);
 }
 
 void handleMessage(AdafruitIO_Data *data) {
