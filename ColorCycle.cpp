@@ -1,8 +1,8 @@
-#include "PixelParty.h"
+#include "ColorCycle.h"
 
-PixelParty::PixelParty() {}
+ColorCycle::ColorCycle() {}
 
-void PixelParty::party(Adafruit_NeoPixel * neoPixels) {
+void ColorCycle::start(Adafruit_NeoPixel * neoPixels) {
   /* check if timeout has expired */
   if (millis() - timestamp < timeout) {
     /* timeout hasn't expired, return */
@@ -15,23 +15,18 @@ void PixelParty::party(Adafruit_NeoPixel * neoPixels) {
   /* get the current color */
   uint32_t currentColor = Color::wheel(wheelValue, neoPixels);
 
-  /* update the pixel */
-  neoPixels->setPixelColor(pixelPosition, currentColor);
+  /* update the pixels */
+  for (uint8_t i = 0; i < neoPixels->numPixels(); i++) {
+    neoPixels->setPixelColor(i, currentColor);
+  }
+
   neoPixels->show();
 
   /* update the timestamp */
   timestamp = millis();
 }
 
-void PixelParty::tickValues(Adafruit_NeoPixel * neoPixels) {
-  /* increment the pixelPosition */
-  pixelPosition++;
-
-  /* reset the pixel position if needed */
-  if (pixelPosition >= neoPixels->numPixels() - 1) {
-    pixelPosition = 0;
-  }
-
+void ColorCycle::tickValues(Adafruit_NeoPixel * neoPixels) {
   /* increment the color on the color wheel */
   wheelValue += increment;
 
