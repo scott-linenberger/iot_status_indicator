@@ -2,6 +2,7 @@
 #define STATUS_INDICATOR_H
 
 #include <Adafruit_NeoPixel.h>
+#include <EEPROM.h>
 #include "PixelFader.h"
 #include "PixelParty.h"
 #include "Emergency.h"

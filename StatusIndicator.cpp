@@ -4,6 +4,9 @@ StatusIndicator::StatusIndicator() {}
 
 /* initializes NeoPixels */
 void StatusIndicator::begin(Adafruit_NeoPixel &_neoPixels) {
+  /* start EEPROM */
+  EEPROM.begin(512);
+
   /* set the pixels on our indicator object */
   neoPixels = &_neoPixels;
 
@@ -11,6 +14,15 @@ void StatusIndicator::begin(Adafruit_NeoPixel &_neoPixels) {
   neoPixels->begin();
   neoPixels->clear();
   neoPixels->show();
+
+  /* read the last update value from EEPROM */
+  int storedValue = EEPROM.read(0);
+  
+  Serial.print("Stored Value: ");
+  Serial.print(storedValue);
+  
+  /* update the state with the last stored value */
+  updateState(storedValue);
 }
 
 void StatusIndicator::run() {
@@ -75,6 +87,10 @@ void StatusIndicator::displayColor(uint32_t color) {
 void StatusIndicator::updateState(int _state) {
   /* assign the state value */
   state = _state;
+
+  /* write the state to EEPROM */
+  EEPROM.write(0, _state);
+  EEPROM.commit();
 
   /* immediately call run to update the current status */
   run();
