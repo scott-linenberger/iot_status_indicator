@@ -118,6 +118,10 @@ void handleMessage(AdafruitIO_Data *data) {
       responseMsg = responseMsg + "Do not Disturb";
       break;
 
+    case STATE_FIRE:
+      responseMsg = responseMsg + "Fire!";
+      break;
+
     case STATE_EMERGENCY:
       responseMsg = responseMsg + "Emergency";
       break;

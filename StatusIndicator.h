@@ -5,6 +5,7 @@
 #include <EEPROM.h>
 #include "PixelFader.h"
 #include "PixelParty.h"
+#include "Fire.h";
 #include "Emergency.h"
 #include "ColorCycle.h"
 
@@ -16,6 +17,7 @@
 #define STATE_RED 5
 #define STATE_GREEN_PULSING 6
 #define STATE_RED_PULSING 7
+#define STATE_FIRE 96
 #define STATE_EMERGENCY 97
 #define STATE_COLORCYCLE 98
 #define STATE_PARTY_TIME 99
@@ -24,6 +26,7 @@ class StatusIndicator {
   Adafruit_NeoPixel *neoPixels;
   PixelFader fader = PixelFader();
   PixelParty pixelParty = PixelParty();
+  Fire fire = Fire();
   Emergency emergency = Emergency();
   ColorCycle colorCycle = ColorCycle();
 

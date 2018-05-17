@@ -55,6 +55,10 @@ void StatusIndicator::run() {
       fader.fade(neoPixels, true, false, false);
       break;
 
+    case STATE_FIRE:
+      fire.start(neoPixels); 
+      break;
+
     case STATE_EMERGENCY:
       emergency.start(neoPixels);
       break;
