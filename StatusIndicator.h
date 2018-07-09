@@ -5,7 +5,7 @@
 #include <EEPROM.h>
 #include "PixelFader.h"
 #include "PixelParty.h"
-#include "Fire.h";
+#include "Fire.h"
 #include "Emergency.h"
 #include "ColorCycle.h"
 
