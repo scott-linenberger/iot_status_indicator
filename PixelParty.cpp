@@ -28,7 +28,7 @@ void PixelParty::tickValues(Adafruit_NeoPixel * neoPixels) {
   pixelPosition++;
 
   /* reset the pixel position if needed */
-  if (pixelPosition >= neoPixels->numPixels() - 1) {
+  if (pixelPosition >= neoPixels->numPixels()) {
     pixelPosition = 0;
   }
 
