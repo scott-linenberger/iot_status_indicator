@@ -31,6 +31,23 @@ In the example, set the values for the following variables
 ```
 `IO_USERNAME` and `IO_KEY` need to come from your AdafruitIO account and `WIFI_SSID` and `WIFI_PASS` are your WiFi credentials. 
 
+## State Values  
+The IOT Status Indicator uses numeric values to represent each state. Here are a list of the states you can use with an AdafruitIO feed for the IOT Status Indicator. 
+
+|Numeric Value |LEDs                   |
+|--------------|-----------------------|
+|1             |Solid Green            |
+|2             |Solid Yellow           |
+|3             |Solid Blue             |
+|4             |Solid Purple           |
+|5             |Solid Red              |
+|6             |Pulsing Green          |
+|7             |Pulsing Red            |
+|96            |Animation Fire         |
+|97            |Animation Police       |
+|98            |Animation Cycle Colors |
+|99            |Animation Party        |
+
 ## Additional Libraries  
 The IOT Status Indicator library relies on other Arduino Libraries. You'll need to download these additional libraries to compile and upload the IOT Status Indicator code.  
 
