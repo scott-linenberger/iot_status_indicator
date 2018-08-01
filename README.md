@@ -48,19 +48,21 @@ The Feather Huzzah is simple to use with the Arduino IDE. Checkout the [Learn][L
 Here are the connections for wiring up the IOT Status Indicator using an Adafruit Feather Huzzah, NeoPixel Stick and TXB0104 level shifter on a bread board. The colors of wires don't actually change how the wire works. The colors are just a convention for representing what the wire is doing. For example, red, yellow and orange wires typically represent power connections. Blue, black and brown wires usually represent ground wires. But, you can use any color wire to make any connection. 
 
 **[Level Shifter][LINK_PRODUCT_LEVEL_SHIFTER] TXB0104**
-|Level Shifter Pin | Huzzah Pin | Wire Color    |
-|------------------|------------|---------------|
-|LV                |3V          | Red or Yellow |
-|HV                |USB         | Red or Yellow |
-|GND               |GND         | Black or Blue |
-|A1                |4           | White or Gray |
+
+|Level Shifter Pin |Huzzah Pin |Wire Color    |
+|------------------|-----------|--------------|
+|LV                |3V         |Red or Yellow |
+|HV                |USB        |Red or Yellow |
+|GND               |GND        |Black or Blue |
+|A1                |4          |White or Gray |
 
 **[Neopixel Stick][LINK_PRODUCT_NEOPIXEL_STICK]**
-|NeoPixel Pin      | Level Shifter Pin | Wire Color    |
-|------------------|-------------------|---------------|
-|GND               |GND                | Black or Blue |
-|DIN               |B1                 | White or Gray |
-|VDC               |HV                 | Red or Yellow |
+
+|NeoPixel Pin      |Level Shifter Pin |Wire Color    |
+|------------------|------------------|--------------|
+|GND               |GND               |Black or Blue |
+|DIN               |B1                |White or Gray |
+|VDC               |HV                |Red or Yellow |
 
 Here is a diagram for wiring the Adafruit Feather Huzzah. The bends in the wires are not important, only where each wire in the diagram starts and ends.
 
