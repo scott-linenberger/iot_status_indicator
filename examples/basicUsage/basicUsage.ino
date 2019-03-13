@@ -2,24 +2,15 @@
 #include "AdafruitIO_WiFi.h"
 #include "StatusIndicator.h"
 
-/* pin constants */
-#define PIN_PIXELS 4
-#define NUM_PIXELS 8
-#define PIN_ONBOARD_LED 2
-
-/* connection constants */
-/* --->>> SET THESE <<<--- */
-#define IO_USERNAME ""
-#define IO_KEY ""
-#define WIFI_SSID ""
-#define WIFI_PASS ""
+/* set your WiFi and Adafruit IO information in this file */
+#include "config.h"
 
 /* init Adafruit IO */
 AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
 
 /* setup the feed */
-AdafruitIO_Feed *status = io.feed("status");
-AdafruitIO_Feed *notifier = io.feed("response");
+AdafruitIO_Feed *status = io.feed(FEED_STATUS);
+AdafruitIO_Feed *notifier = io.feed(FEED_RESPONSE);
 
 /* setup the pixel strip */
 Adafruit_NeoPixel strip =
@@ -35,9 +26,6 @@ void setup() {
   /* setup the blue LED */
   pinMode(PIN_ONBOARD_LED, OUTPUT);
 
-  while (!Serial) {
-  }
-
   /* connect to Adafruit IO */
   connectToIO();
 
@@ -46,6 +34,11 @@ void setup() {
 }
 
 void loop() {
+  /* keep our connection up */
+  if (io.status() < AIO_CONNECTED) {
+    connectToIO();
+  }
+
   /* call run on IO and the statusIndicator */
   io.run();
   statusIndicator.run();
