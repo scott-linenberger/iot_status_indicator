@@ -46,6 +46,10 @@ void loop() {
 
 void connectToIO() {
   Serial.println("Connecting to Adafruit IO...");
+
+  // Set the WiFi to station mode
+  WiFi.mode(WIFI_STA);
+
   io.connect();
 
   /* handle incoming messages */
